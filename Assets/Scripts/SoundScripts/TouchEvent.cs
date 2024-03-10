@@ -20,6 +20,8 @@ public class TouchEvent : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         audioSource.volume = volume;
+
+        FindObjectOfType<ResetPosition>().onReset.AddListener(OnReset);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,5 +39,10 @@ public class TouchEvent : MonoBehaviour
         {
             audioSource.PlayOneShot(soundEffect);
         }
+    }
+
+    private void OnReset()
+    {
+        oncePlay = true;
     }
 }

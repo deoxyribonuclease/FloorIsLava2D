@@ -5,10 +5,6 @@ using UnityEngine;
 public class PausePanel : MonoBehaviour
 {
     public GameObject Pausep;
-    void Update()
-    {
-
-    }
     public void Pause()
     {
         Pausep.SetActive(true);

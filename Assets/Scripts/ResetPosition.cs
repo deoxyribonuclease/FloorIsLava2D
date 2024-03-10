@@ -1,12 +1,14 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ResetPosition : MonoBehaviour
 {
-    public Transform objectToReset; 
+    public Transform objectToReset;
 
-    private Vector3 originalPosition; 
-    private Vector3 originalVelocity; 
+    private Vector3 originalPosition;
+    private Vector3 originalVelocity;
+
+    public UnityEvent onReset;
 
     void Start()
     {
@@ -18,10 +20,11 @@ public class ResetPosition : MonoBehaviour
 
     public void ResetObject()
     {
-
         objectToReset.position = originalPosition;
         Rigidbody2D rb = objectToReset.GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.velocity = originalVelocity;
+
+        onReset.Invoke();
     }
 }
